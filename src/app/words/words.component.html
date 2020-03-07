@@ -1,0 +1,27 @@
+<div *ngIf="showForm">
+  <input placeholder="English" [(ngModel)]="newEn"/><br>
+
+  <input placeholder="VietNam" [(ngModel)]="newVN"/><br>
+
+  <button (click)="addWord()">Add Word</button>
+</div>
+<br>
+<button (click)=" showForm = true" *ngIf="!showForm">Add Word</button>
+
+<select [(ngModel)]="fillter">
+  <option value="Show_All"> Show All</option>
+  <option value="Memoried"> Memoried</option>
+  <option value="Not_Memory"> Not Memory
+  </option>
+</select>
+
+<div *ngFor="let word of arrWords" >
+  <div *ngIf="getShowStatus(word.memorized)" class="word" >
+    <h4 [ngStyle]="{color: word.memorized? 'green': 'red'}">{{word.vn}}</h4>
+    <p>{{word.en}}</p>
+    <button (click)="removeWord(word.id)">Remove</button>
+  </div>
+
+</div>
+
+
